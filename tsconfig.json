@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "commonjs",
+    "rootDir": "./",
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "paths": {
+      "@modules/*": [
+        "modules/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@middlewares/*": [
+        "middlewares/*"
+      ],
+      "@database/*": [
+        "database/*"
+      ],
+      "@provider/*": [
+        "provider/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ]
+    },
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "lib": [
+      "esnext"
+    ],
+    "strict": true
+  }
+}
