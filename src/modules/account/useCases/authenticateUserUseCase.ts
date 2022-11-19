@@ -3,7 +3,7 @@ import { prisma } from '@database/prismaClient';
 import { GenerateTokenProvider } from '@provider/GenerateTokenProvider';
 
 interface IAuthenticateUser {
-  name: string;
+  user: string;
   password: string;
 }
 
@@ -15,17 +15,17 @@ interface IResponse {
 }
 
 export class AuthenticateUserUseCase {
-  async execute({ name, password }: IAuthenticateUser) {
+  async execute({ user, password }: IAuthenticateUser) {
     const doctor = await prisma.doctor.findFirst({
       where: {
-        name
-      },
+        name: {
+          equals: user
+        }
+      }
     });
-
     if (!doctor) {
       throw new Error('Username or password invalid');
     }
-
     const passwordMatch = doctor.password === password;
 
     if (!passwordMatch) {

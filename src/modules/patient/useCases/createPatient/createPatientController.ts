@@ -15,9 +15,10 @@ export class CreatePatientController {
 
       return response.status(200).json(result);
     } catch (err) {
+      console.log(err);
       return response
         .status(400)
-        .json({ "Error": err });
+        .json({ 'Erro': 'Usuário já existe' })
     }
   }
 }

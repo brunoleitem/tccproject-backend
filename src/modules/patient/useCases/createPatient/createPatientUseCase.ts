@@ -19,16 +19,22 @@ export class CreatePatientUseCase {
     }})
 
     if (patientExists) {
-      throw new Error('Patient exists');
+      throw new Error('Paciente já existe');
     }
 
-    const patient = await prisma.patient.create({ 
+    await prisma.patient.create({ 
       data: {
         name: name,
         doctor_id: doctorId,
       }
     })
 
-    return patient;
+    const res = await  prisma.patient.findMany({
+      where: {
+        doctor_id: doctorId
+      }
+    })
+
+    return res;
   }
 }

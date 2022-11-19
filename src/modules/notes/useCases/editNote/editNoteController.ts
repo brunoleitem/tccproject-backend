@@ -1,15 +1,19 @@
 import { Request, Response } from 'express';
 
-import { GetPatientUseCase } from './getPatientUseCase';
+import { EditNoteUseCase } from './editNoteUseCase';
 
-export class GetPatientController {
+export class EditNoteController {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
-    const getPatientUseCase = new GetPatientUseCase();
+    const { title, body } = request.body;
+
+    const editNoteUseCase = new EditNoteUseCase();
 
     try {
-      const result = await getPatientUseCase.execute({
-        patientId: Number(id)
+      const result = await editNoteUseCase.execute({
+        id: Number(id),
+        title,
+        body
       });
 
       return response.status(200).json(result);

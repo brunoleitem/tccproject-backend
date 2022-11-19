@@ -4,12 +4,12 @@ import { AuthenticateUserUseCase } from './authenticateUserUseCase';
 
 export class AuthenticateUserController {
   async handle(request: Request, response: Response) {
-    const { name, password } = request.body;
+    const { user, password } = request.body;
     try {
       const authenticateUserUseCase = new AuthenticateUserUseCase();
 
       const result = await authenticateUserUseCase.execute({
-        name,
+        user,
         password,
       });
 
@@ -17,7 +17,7 @@ export class AuthenticateUserController {
     } catch (err) {
       return response
         .status(400)
-        .json({ Error: err });
+        .json({ Error: 'Usuário ou senha inválidos' });
     }
   }
 }
